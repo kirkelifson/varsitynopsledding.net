@@ -8,7 +8,7 @@ class BACKEND {
 		$mysql = $this->mysql_conn();
 		$user = mysql_real_escape_string($user);
 		$pass = mysql_real_escape_string($pass);
-		$db = mysql_select_db("hutrib_cms");
+		$db = mysql_select_db("db_name");
 		$result = mysql_query("select password,salt from users where username=\"".$user."\"");
 		if(mysql_num_rows($result)){
 			$ret = mysql_fetch_assoc($result);
@@ -25,7 +25,7 @@ class BACKEND {
 				$content .= $_SERVER['HTTP_USER_AGENT']."\n";
 				$content .= "-------------------\n";
 				fwrite($fptr, $content);
-				fclose($fptr);	
+				fclose($fptr);
 				header("Location: /index.php");
 			}
 		}
@@ -39,7 +39,7 @@ class BACKEND {
 
 	function readLog(){
 		$output = file_get_contents("/administration/ip.txt");
-		echo nl2br($output);		
+		echo nl2br($output);
 	}
 
 	function clearLog(){
@@ -87,12 +87,12 @@ class BACKEND {
 		}
 		mysql_close();
 	}
-	
+
 	function nav(){
-		$list = array(	"home" 			=> "/index.php",
-										"services" 	=> "/services.php",
-										"about"			=> "/about.php",
-										"links"			=> "/links.php",
+		$list = array(	"home"      => "/index.php",
+										"services"  => "/services.php",
+										"about"     => "/about.php",
+										"links"     => "/links.php",
 								 );
 		$x=sizeof($list);
 		foreach ($list as $key=>$value){
